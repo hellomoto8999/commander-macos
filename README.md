@@ -44,6 +44,28 @@ File manager nativo per macOS a **doppio pannello**, con un'interfaccia in stile
 - **Opzioni vista** (`⌘J`) per vista, ordinamento, dimensione icone, barre, cartelle e ricerca.
 - **Scorciatoie** in stile Finder/Commander, incluse le scorciatoie della barra laterale e della vista.
 
+## Installazione
+
+Scarica l’ultima release dalla pagina **Releases** di GitHub:
+
+- **Requisiti:** macOS 15 o successivo, Apple Silicon
+- **Versione:** 1.0.0
+
+L’app è firmata **ad-hoc** e non è notarizzata da Apple. Al primo avvio macOS può mostrare l’avviso Gatekeeper:
+
+1. fai **clic destro → Apri** su `Commander.app`
+2. oppure vai in **Impostazioni di Sistema → Privacy e sicurezza → Apri comunque**
+3. in alternativa, da Terminale:
+   ```bash
+   xattr -dr com.apple.quarantine /Applications/Commander.app
+   ```
+
+Per eliminare definitivamente l’avviso servirebbe una firma **Developer ID** e la notarizzazione Apple.
+
+## Licenza
+
+Distribuito con licenza **MIT**. Vedi [LICENSE](LICENSE).
+
 ## Requisiti
 
 - macOS 15 o successivo.
