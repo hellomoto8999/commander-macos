@@ -46,7 +46,7 @@ File manager nativo per macOS a **doppio pannello**, con un'interfaccia in stile
 
 ## Installazione
 
-Scarica l’ultima release dalla pagina **Releases** di GitHub:
+Scarica l’ultima release: [Commander 1.0.0](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.0).
 
 - **Requisiti:** macOS 15 o successivo, Apple Silicon
 - **Versione:** 1.0.0
