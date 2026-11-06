@@ -1,0 +1,7 @@
+"NSDesktopFolderUsageDescription" = "Commander deve poter accedere ai file sul desktop.";
+"NSDocumentsFolderUsageDescription" = "Commander deve poter accedere ai documenti.";
+"NSDownloadsFolderUsageDescription" = "Commander deve poter accedere ai download.";
+"NSRemovableVolumesUsageDescription" = "Commander deve poter accedere ai volumi rimovibili.";
+"NSLocalNetworkUsageDescription" = "Commander usa la rete locale per trovare i server di file.";
+
+"NSAppleEventsUsageDescription" = "Commander usa Finder per aprire la finestra Informazioni standard.";

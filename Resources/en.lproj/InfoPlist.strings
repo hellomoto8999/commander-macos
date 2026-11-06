@@ -1,0 +1,7 @@
+"NSDesktopFolderUsageDescription" = "Commander needs access to files on your Desktop.";
+"NSDocumentsFolderUsageDescription" = "Commander needs access to your documents.";
+"NSDownloadsFolderUsageDescription" = "Commander needs access to your downloads.";
+"NSRemovableVolumesUsageDescription" = "Commander needs access to removable volumes.";
+"NSLocalNetworkUsageDescription" = "Commander uses the local network to discover file servers.";
+
+"NSAppleEventsUsageDescription" = "Commander uses Finder to open the standard Get Info window.";
