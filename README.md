@@ -1,78 +1,73 @@
 # Commander
 
-File manager nativo per macOS a **doppio pannello**, con un'interfaccia in stile Finder: chrome di sistema, barra laterale traslucida, tre viste (icone, colonne, lista dettagliata), schede persistenti, anteprima e supporto a volumi, cloud e share di rete.
+A native, dual-pane file manager for macOS with a Finder-style interface: system chrome, translucent sidebar, icon/list/column views, persistent tabs, Quick Look previews, and support for volumes, cloud folders, and network shares.
 
-> Ispirato a OneCommander (Tangible Loop LLC). Progetto indipendente per macOS, non affiliato.
+> Inspired by OneCommander (Tangible Loop LLC). Independent macOS project, not affiliated.
 
 ![Commander](docs/screenshot.png)
 
-### Viste
+### Views
 
-| Icone | Lista dettagliata | Colonne |
+| Icons | Detailed list | Columns |
 |---|---|---|
-| ![Vista icone](docs/screenshot.png) | ![Lista dettagliata](docs/screenshot-list.png) | ![Colonne Miller](docs/screenshot-columns.png) |
+| ![Icon view](docs/screenshot.png) | ![Detailed list](docs/screenshot-list.png) | ![Column view](docs/screenshot-columns.png) |
 
-## Funzioni
+## Features
 
-- **Interfaccia Finder-style**: tema chiaro/scuro automatico in base a macOS, stessi materiali (sidebar, header, barre), colori semantici e colore accento di sistema; toolbar unificata, titolo centrato.
-- **Pannello anteprima nascosto di default**, attivabile da Impostazioni, Vista o Opzioni vista.
-- **Barra del percorso interattiva**: ogni segmento naviga; clic sulla cartella corrente, sull'icona copia o voce del menu contestuale per copiare l'intero path.
-- **Barra laterale Finder-style**: icone di sistema colorate, sezioni Preferiti, Cloud, Locations e Tag, preferiti riordinabili via drag, larghezza ridimensionabile e persistente; i tag aprono una ricerca Spotlight nella cartella home.
-- **Finestra ridimensionabile** fino a 640×420, con divisori trascinabili per sidebar e anteprima; dimensioni ricordate tra le sessioni.
-- **Menu contestuali Finder**: Apri, Apri in nuova scheda, Incolla elemento, Ottieni informazioni, Rinomina, Comprimi, Duplica, Crea alias, Anteprima rapida, Copia, Sposta nel cestino, Condividi, pallini colore dei tag, Personalizza cartella, Azioni rapide, Azioni cartella, Nuovo Terminale, Nuova scheda Terminale e servizi installati (es. Sblocca app). Con **Opzione + tasto destro** compaiono anche “Copia … come percorso”, “Mostra contenuto pacchetto” e “Apri sempre con”.
-- **Ottieni informazioni**: per un singolo file o cartella apre la vera finestra Informazioni del Finder (previo permesso Automazione); per selezioni multiple o se Automazione viene negata, usa il pannello nativo con dimensione, percorso, date, proprietario, permessi e tag.
-- **Lingua del sistema**: interfaccia in inglese o italiano in base alla lingua di macOS; date, dimensioni e tipi di file usano le impostazioni locali.
-- **Tre viste**: icone con miniature, colonne Miller e lista dettagliata con colonne adattive (nome, data modifica, dimensione, tipo).
-- **Miniature Quick Look** nella vista icone per immagini, PDF, video, documenti e file di testo/Markdown.
-- **Zoom**: slider nella barra di stato e pinch-to-zoom nella vista icone, con dimensione persistente.
-- **Doppio pannello** con pannello attivo e split regolabile.
-- **Schede multiple per pannello**, ripristinate all'avvio.
-- **Ordinamento** direttamente nella toolbar (nome, tipo, dimensione, data) e nelle intestazioni della lista.
-- **Rete**: scoperta Bonjour di server SMB/AFP/NFS con risoluzione dell'indirizzo IP, mount tramite Finder senza aprire la finestra del Finder, foglio "Connetti al server…" con server trovati e messaggi di errore inline, volumi di rete montati. Per NFS viene richiesto il percorso dell'export.
-- **Volumi e cloud**: dischi interni/esterni, share di rete, Google Drive/OneDrive/Dropbox in CloudStorage, iCloud Drive.
-- **Espulsione** dei dispositivi rimovibili dalla sidebar, dal menu contestuale o con `⌘E`.
-- **Anteprima** di immagini, PDF, testo, cartelle, video/audio; Quick Look con barra spaziatrice.
-- **Condivisione** tramite il pannello di sistema.
-- **Operazioni file**: copia, taglia, incolla (anche da/per Finder), sposta qui, duplica, rinomina, nuova cartella/file, comprimi in ZIP, crea alias, cestino, svuota cestino, eliminazione definitiva.
-- **Tag Finder** in lettura e scrittura (sette colori di sistema), con sezione Tag nella sidebar e ricerca per tag.
-- **Cestino**: se macOS non concede l'accesso, viene mostrata una guida con Accesso completo al disco invece di un errore grezzo.
-- **Pannello di avanzamento** per copia e spostamento: file corrente, byte trasferiti, elementi completati e pulsante Annulla. Gli spostamenti sullo stesso volume restano istantanei.
-- **Drag & drop** tra pannelli, su cartelle e sulla sidebar; `⌥` per copiare.
-- **Filtro** nella cartella corrente, tag Finder come puntini colorati.
-- **Impostazioni in stile Finder**: schede Generali, Barra laterale, Tag, Avanzate, Scorciatoie e Info; cartella iniziale, apertura cartelle in schede, estensioni, date relative, anteprime e informazioni icone, avvisi, ricerca nelle sottocartelle, visibilità di barre e gruppi della sidebar, tag personalizzati.
-- **Selezione rapida da tastiera**: digitando le prime lettere del nome si seleziona il file corrispondente, come in Finder.
-- **Opzioni vista** (`⌘J`) per vista, ordinamento, dimensione icone, barre, cartelle e ricerca.
-- **Scorciatoie** in stile Finder/Commander, incluse le scorciatoie della barra laterale e della vista.
+- **Finder-style interface**: automatic light/dark theme based on macOS, system materials (sidebar, headers, bars), semantic colors and system accent color; unified toolbar and centered title.
+- **Preview pane hidden by default**, available from Settings, View, or View Options.
+- **Resizable window** down to 640×420, with draggable sidebar and preview dividers; sizes are remembered between sessions.
+- **Interactive path bar**: every segment navigates; click the current folder, the copy icon, or the context menu to copy the full path.
+- **Finder-style sidebar**: colored system icons, Favorites, Cloud, Locations and Tags sections; drag to reorder favorites; resizable and persistent width; tags open a Spotlight search in the home folder.
+- **Three views**: icons with Quick Look thumbnails, Miller columns, and a detailed list with adaptive columns (name, date modified, size, kind).
+- **Quick Look thumbnails** in icon view for images, PDFs, videos, documents, text files, and Markdown.
+- **Zoom**: status-bar slider and pinch-to-zoom in icon view, with persistent icon size.
+- **Dual pane** with active pane and adjustable split.
+- **Multiple tabs per pane**, restored at launch.
+- **Sorting** directly from the toolbar (name, kind, size, date) and from list headers.
+- **Network**: Bonjour discovery of SMB/AFP/NFS servers with IP resolution, Finder-script mounting without opening a Finder window, inline connection errors, and mounted network volumes. NFS asks for the export path.
+- **Volumes and cloud**: internal/external disks, network shares, Google Drive/OneDrive/Dropbox in CloudStorage, and iCloud Drive.
+- **Eject** removable devices from the sidebar, context menu, or with `⌘E`.
+- **Preview** of images, PDFs, text, folders, video/audio; Quick Look with the space bar.
+- **Sharing** through the system sharing panel.
+- **File operations**: copy, cut, paste (including to/from Finder), move here, duplicate, rename, new folder/file, compress to ZIP, make alias, move to Trash, empty Trash, permanently delete.
+- **Finder tags** read and write (seven system colors), with a Tags sidebar and tag search.
+- **Trash**: if macOS has not granted access, Commander shows Full Disk Access guidance instead of a raw error.
+- **Progress panel** for copy and move: current file, bytes transferred, completed items, and Cancel. Same-volume moves are instant.
+- **Drag & drop** between panes, onto folders and the sidebar; hold `⌥` to copy.
+- **In-folder filter**, optional subfolder search, and Finder color tags.
+- **Finder context menus**: Open, Open in New Tab, Paste Item, Get Info, Rename, Compress, Duplicate, Make Alias, Quick Look, Copy, Move to Trash, Share, tag color dots, Customize Folder, Quick Actions, Folder Actions, New Terminal, New Terminal Tab, and installed services (for example Unlock App). Hold **Option** and right-click for “Copy as Pathname”, “Show Package Contents”, and “Always Open With”.
+- **Get Info**: for a single file or folder it opens the real Finder Info window (Automation permission required); multiple selections or denied Automation fall back to the native info panel.
+- **Settings in Finder style**: General, Sidebar, Tags, Advanced, Shortcuts, and Info tabs; startup folder, open folders in tabs, extensions, relative dates, icon previews and item info, warnings, subfolder search, bar visibility, sidebar groups, and custom tags.
+- **View Options** with `⌘J`.
+- **Keyboard type-ahead**: type the first letters of a name to select the matching item, as in Finder.
+- **Finder/Commander shortcuts**, including sidebar and view shortcuts.
 
-## Installazione
+## Requirements
 
-Scarica l’ultima release: [Commander 1.0.0](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.0).
+- macOS 15 or later.
+- Swift 6 / Command Line Tools (Xcode is not required for the current build).
+- With Command Line Tools only, the build script automatically uses SDK 26.5 because SDK 27 requires the SwiftUI macro plugin bundled with Xcode.
+- Local network access is required for Bonjour server discovery.
+- “Get Info” requires Automation permission to control Finder; macOS asks on first use. If denied, Commander shows its native info panel.
 
-- **Requisiti:** macOS 15 o successivo, Apple Silicon
-- **Versione:** 1.0.0
+## Installation
 
-L’app è firmata **ad-hoc** e non è notarizzata da Apple. Al primo avvio macOS può mostrare l’avviso Gatekeeper:
+Download the latest release: [Commander 1.0.0](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.0).
 
-1. fai **clic destro → Apri** su `Commander.app`
-2. oppure vai in **Impostazioni di Sistema → Privacy e sicurezza → Apri comunque**
-3. in alternativa, da Terminale:
+- **Requirements:** macOS 15 or later, Apple Silicon
+- **Version:** 1.0.0
+
+The app is **ad-hoc signed** and **not notarized** by Apple. On first launch macOS may show the Gatekeeper warning:
+
+1. **Right-click → Open** on `Commander.app`
+2. or go to **System Settings → Privacy & Security → Open Anyway**
+3. or, from Terminal:
    ```bash
    xattr -dr com.apple.quarantine /Applications/Commander.app
    ```
 
-Per eliminare definitivamente l’avviso servirebbe una firma **Developer ID** e la notarizzazione Apple.
-
-## Licenza
-
-Distribuito con licenza **MIT**. Vedi [LICENSE](LICENSE).
-
-## Requisiti
-
-- macOS 15 o successivo.
-- Swift 6 / Command Line Tools (Xcode non obbligatorio).
-- Con i soli Command Line Tools lo script usa automaticamente l'SDK 26.5, perché l'SDK 27 richiede il plugin delle macro SwiftUI incluso solo in Xcode.
-- La scoperta dei server di rete richiede il permesso "Rete locale" al primo avvio.
-- “Ottieni informazioni” richiede il permesso Automazione per controllare Finder; macOS lo chiede al primo utilizzo. In caso di rifiuto, Commander mostra il pannello nativo.
+Removing the warning permanently requires an Apple **Developer ID** signature and notarization.
 
 ## Build
 
@@ -82,113 +77,123 @@ Distribuito con licenza **MIT**. Vedi [LICENSE](LICENSE).
 open dist/Commander.app
 ```
 
-Oppure:
+Or:
 
 ```bash
 make build
 make run
 ```
 
-## Scorciatoie principali
+## Main Shortcuts
 
-| Azione | Tasto |
+| Action | Shortcut |
 |---|---|
-| Cambia pannello | `Tab` |
-| Nuova scheda / chiudi scheda | `⌘T` / `⌘W` |
-| Nuova cartella / nuovo file | `⌘⇧N` / `⌃⌘N` |
-| Rinomina | `Invio` |
-| Apri | `⌘↓` o `⌘O` |
-| Ottieni informazioni / ispettore | `⌘I` / `⌥⌘I` |
-| Crea alias | `⌃⌘A` |
-| Quick Look | `Spazio` o `⌘Y` |
-| Cestino / svuota / eliminazione definitiva | `⌘⌫` / `⌘⇧⌫` / `⌘⌥⌫` |
-| Sposta qui (dopo Copia) | `⌥⌘V` |
-| Vai alla cartella… | `⌘⇧G` o `⌘L` |
-| Indietro / avanti | `⌘[` / `⌘]` |
-| Cartella superiore | `⌘↑` |
-| Icone / Lista / Colonne | `⌘1` / `⌘2` / `⌘3` |
-| Connetti al server… | `⌘K` |
-| Espelli volume | `⌘E` |
-| Doppio pannello | `⌘⌥D` |
-| Barra laterale / anteprima | `⌘⌥S` / `⌘⌥P` |
-| Mostra/nascondi toolbar | `⌘⌥T` |
-| Barra di stato | `⌘/` |
-| Opzioni vista | `⌘J` |
-| Impostazioni | `⌘,` |
-| File nascosti | `⌘⇧.` |
-| Aggiorna | `⌘R` |
-| Frecce | navigazione (con `⇧` si estende la selezione) |
+| Change pane | `Tab` / `⇧Tab` |
+| New tab / close tab | `⌘T` / `⌘W` |
+| New folder / new file | `⌘⇧N` / `⌃⌘N` |
+| Rename | `Return` |
+| Open | `⌘↓` or `⌘O` |
+| Get Info / inspector | `⌘I` / `⌥⌘I` |
+| Make Alias | `⌃⌘A` |
+| Quick Look | `Space` or `⌘Y` |
+| Move to Trash / empty / permanently delete | `⌘⌫` / `⌘⇧⌫` / `⌘⌥⌫` |
+| Move here (after Copy) | `⌥⌘V` |
+| Go to Folder | `⌘⇧G` or `⌘L` |
+| Back / Forward | `⌘[` / `⌘]` |
+| Enclosing Folder | `⌘↑` |
+| Enclosing Folder in New Tab | `⌘⇧↑` |
+| Icons / List / Columns | `⌘1` / `⌘2` / `⌘3` |
+| Connect to Server | `⌘K` |
+| Eject volume | `⌘E` |
+| Dual pane | `⌘⌥D` |
+| Sidebar / preview | `⌘⌥S` / `⌘⌥P` |
+| Show/hide toolbar | `⌘⌥T` |
+| Status bar | `⌘/` |
+| View Options | `⌘J` |
+| Settings | `⌘,` |
+| Hidden files | `⌘⇧.` |
+| Refresh | `⌘R` |
+| First / last item | `Home` / `End` |
+| Extend to first / last | `⇧Home` / `⇧End` |
+| Page up / page down | `Page Up` / `Page Down` |
+| Type-ahead | Type the item name |
+| Arrows | Navigate; hold `⇧` to extend selection |
 
-## Gesti del mouse
+## Mouse Gestures
 
-| Gesto | Azione |
+| Gesture | Action |
 |---|---|
-| Clic | Seleziona; nelle colonne apre la cartella |
-| Doppio clic | Apre file o cartella |
-| Clic destro / Control-clic | Menu contestuale Finder con l'elemento selezionato |
-| `⌥` + clic destro | Menu esteso: percorso, contenuto pacchetto, apri sempre con |
-| Clic sulla cartella corrente nel percorso | Copia l'intero percorso |
-| Clic sull'icona copia nella barra del percorso | Copia l'intero percorso |
-| Clic centrale | Cartella in una nuova scheda / apre il file |
-| `⌘` clic | Attiva o disattiva la selezione |
-| `⇧` clic | Selezione per intervallo |
-| `⌘` doppio clic | Apre la cartella in una nuova scheda |
-| `⌥` doppio clic | Apre la cartella nel pannello opposto |
-| Trascina | Sposta; con `⌥` copia; trascina tutta la selezione |
-| Clic sullo sfondo | Deseleziona |
-| Clic destro sullo sfondo | Menu della cartella (nuova cartella, incolla, ordina…) |
-| Swipe a due dita / pulsanti laterali del mouse | Indietro / avanti |
-| Pinch | Zoom delle icone |
+| Click | Select; in column view, open the folder |
+| Double-click | Open file or folder |
+| Right-click / Control-click | Finder context menu for the item |
+| `⌥` + right-click | Extended menu: path, package contents, always open with |
+| Middle-click | Open folder in a new tab / open file |
+| `⌘`-click | Toggle selection |
+| `⇧`-click | Select a range |
+| `⌘`-double-click | Open folder in a new tab |
+| `⌥`-double-click | Open folder in the other pane |
+| Drag | Move; hold `⌥` to copy; drags the whole selection |
+| Click background | Deselect |
+| Right-click background | Folder menu (new folder, paste, sort…) |
+| Click current path crumb | Copy the full path |
+| Click copy icon in path bar | Copy the full path |
+| Two-finger swipe / side mouse buttons | Back / forward |
+| Pinch | Zoom icons |
 
-Le gesture indietro/avanti funzionano anche con i pulsanti della toolbar e con `⌘[` / `⌘]`.
+Back/forward also work from the toolbar and with `⌘[` / `⌘]`.
 
-## Struttura del progetto
+## Project Structure
 
 ```
 Sources/Commander/
-├── CommanderApp.swift        # App SwiftUI, finestra, AppDelegate
-├── CommanderCommands.swift   # Menu e scorciatoie
+├── CommanderApp.swift        # SwiftUI app, window, AppDelegate
+├── CommanderCommands.swift   # Menus and shortcuts
 ├── Models/
-│   ├── AppState.swift        # Stato globale, operazioni, volumi, rete
-│   ├── BrowserTab.swift      # Scheda: colonne, selezione, cronologia
-│   ├── PaneState.swift       # Pannello con schede
-│   └── FileItem.swift        # Metadati di un elemento
+│   ├── AppState.swift        # Global state, file operations, volumes, network
+│   ├── BrowserTab.swift      # Tab: columns, selection, history
+│   ├── PaneState.swift       # Pane with tabs
+│   └── FileItem.swift        # Item metadata
 ├── Services/
-│   ├── FileSystem.swift      # Elenco, copia/move/rename, cestino
-│   ├── NetworkBrowser.swift  # Scoperta Bonjour SMB/AFP/NFS
-│   ├── IconProvider.swift    # Cache icone di sistema
+│   ├── FileSystem.swift      # Listing, copy/move/rename, Trash
+│   ├── NetworkBrowser.swift  # Bonjour SMB/AFP/NFS discovery
+│   ├── FileInfoPanel.swift   # Info panel / Finder Info
+│   ├── IconProvider.swift    # System icon cache
 │   ├── ThumbnailProvider.swift
 │   ├── QuickLook.swift
 │   └── KeyMonitor.swift
 ├── Support/
-│   ├── Localization.swift    # Inglese/italiano in base al sistema
-│   ├── Theme.swift           # Colori semantici di macOS
+│   ├── Localization.swift    # English/Italian based on system language
+│   ├── Theme.swift           # macOS semantic colors
 │   └── Format.swift
 └── Views/
-    ├── MainToolbar.swift     # Toolbar unificata
-    ├── SidebarView.swift     # Preferiti, cloud, volumi, rete
-    ├── IconGridView.swift    # Vista icone + zoom
-    ├── MillerView.swift      # Colonne Miller
-    ├── FileListView.swift    # Lista dettagliata
+    ├── MainToolbar.swift     # Unified toolbar
+    ├── SidebarView.swift     # Favorites, cloud, volumes, network, tags
+    ├── IconGridView.swift    # Icon view + zoom
+    ├── MillerView.swift      # Miller columns
+    ├── FileListView.swift    # Detailed list
     └── …
 ```
 
-## Note
+## Notes
 
-- L'app non è sandboxed, così può gestire liberamente i file scelti dall'utente.
-- La firma è ad-hoc: per distribuirla ad altri Mac serve una firma Developer ID e la notarizzazione.
-- Il calcolo della dimensione delle cartelle avviene in background e può richiedere qualche istante su cartelle molto grandi.
-- Il pannello di copia di Finder non è esposto come API pubblica: Commander usa un pannello nativo equivalente con avanzamento, file corrente e Annulla.
-- La localizzazione dell'interfaccia copre inglese e italiano; le altre lingue usano l'inglese.
-- Il Cestino è protetto da macOS: per leggerlo o svuotarlo, Commander deve avere l'Accesso completo al disco. Senza permesso viene mostrata una guida con il pulsante per aprire Impostazioni di Sistema; nel frattempo si può usare “Apri nel Finder”.
-- “Crea alias” usa un link simbolico, perché macOS non espone un'API pubblica per creare gli alias del Finder.
-- I tag nella sidebar usano Spotlight (`mdfind`) e cercano nella cartella home; i tag personalizzati sono configurabili in Impostazioni → Tag.
-- Le impostazioni che dipendono da funzioni di sistema non controllabili da un'app di terze parti (icone sul Desktop, eliminazione automatica dal Cestino dopo 30 giorni, avvisi iCloud) non sono duplicate: il resto delle preferenze Finder è mappato sulle funzioni di Commander.
+- The app is not sandboxed, so it can freely manage user-selected files.
+- The signature is ad-hoc: distributing to other Macs requires a Developer ID signature and notarization.
+- Folder size calculation runs in the background and can take a moment on very large folders.
+- Finder’s copy panel is not exposed as a public API: Commander uses an equivalent native panel with progress, current file, and Cancel.
+- The interface localization covers English and Italian; other languages fall back to English.
+- The Trash is protected by macOS: reading or emptying it from Commander requires Full Disk Access. Without permission the app shows a guide with a button to open System Settings; “Open in Finder” remains available.
+- “Make Alias” uses a symbolic link because macOS does not expose a public API for creating Finder aliases.
+- The Tags sidebar uses Spotlight (`mdfind`) and searches the home folder; custom tags can be configured in Settings → Tags.
+- Settings that depend on system-only features (Desktop icons, automatic 30-day Trash cleanup, iCloud warnings) are not duplicated; the remaining Finder preferences are mapped to Commander features.
 
-## Possibili estensioni
+## Possible Extensions
 
-- Ricerca Spotlight globale (`NSMetadataQuery`).
-- Rinomina di massa con espressioni regolari.
-- Operazioni annullabili tramite `UndoManager`.
-- Script personalizzati e automazioni.
-- Vista galleria.
+- Undoable file operations through `UndoManager`.
+- Mass rename with regular expressions.
+- Global Spotlight search.
+- Custom scripts and automations.
+- Gallery view.
+
+## License
+
+Released under the **MIT License**. See [LICENSE](LICENSE).
