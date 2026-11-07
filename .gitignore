@@ -12,3 +12,4 @@ scripts/Sblocca App.command
 scripts/installa-servizio-finder.sh
 scripts/quick-action/
 scripts/sblocca-app.sh
+gatekeeper-fileunlock/
