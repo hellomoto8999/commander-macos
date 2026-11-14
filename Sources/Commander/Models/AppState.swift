@@ -2172,7 +2172,8 @@ final class AppState: ObservableObject {
                     return
                 }
                 for option in [false, true] {
-                    let menu = FileMenuBuilder.menu(for: item, tab: tab, app: self, option: option)
+                    let modifiers: NSEvent.ModifierFlags = option ? [.option] : []
+                    let menu = FileMenuBuilder.menu(for: item, tab: tab, app: self, modifiers: modifiers)
                     let serviceTitles = NSApp.servicesMenu?.items.map(\.title) ?? []
                     let header = "CONTEXT option=\(option) item=\(item.name) services=\(serviceTitles)\n"
                     FileHandle.standardError.write(Data(header.utf8))

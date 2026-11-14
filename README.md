@@ -36,7 +36,7 @@ A native, dual-pane file manager for macOS with a Finder-style interface: system
 - **Progress panel** for copy and move: current file, bytes transferred, completed items, and Cancel. Same-volume moves are instant.
 - **Drag & drop** between panes, onto folders and the sidebar; hold `⌥` to copy.
 - **In-folder filter**, optional subfolder search, and Finder color tags.
-- **Finder context menus**: Open, Open in New Tab, Paste Item, Get Info, Rename, Compress, Duplicate, Make Alias, Quick Look, Copy, Move to Trash, Share, tag color dots, Customize Folder, Quick Actions, Folder Actions, New Terminal, New Terminal Tab, and installed services (for example Unlock App). Hold **Option** and right-click for “Copy as Pathname”, “Show Package Contents”, and “Always Open With”.
+- **Finder context menus**: Open, Open in New Tab, Paste Item, Get Info, Rename, Compress, Duplicate, Make Alias, Quick Look, Copy, Move to Trash, Share, tag color dots, Customize Folder, Quick Actions, Folder Actions, New Terminal, New Terminal Tab, and installed services (for example Unlock App). Hold **Command or Option** while opening the menu for the Finder alternate commands: Open in New Window, Show Inspector, Duplicate Exactly (with Shift), Slideshow, Copy as Pathname, Delete Immediately, Always Open With, and Show Package Contents. Hold **Control** for Get Summary Info.
 - **Get Info**: for a single file or folder it opens the real Finder Info window (Automation permission required); multiple selections or denied Automation fall back to the native info panel.
 - **Settings in Finder style**: General, Sidebar, Tags, Advanced, Shortcuts, and Info tabs; startup folder, open folders in tabs, extensions, relative dates, icon previews and item info, warnings, subfolder search, bar visibility, sidebar groups, and custom tags.
 - **View Options** with `⌘J`.
@@ -53,10 +53,10 @@ A native, dual-pane file manager for macOS with a Finder-style interface: system
 
 ## Installation
 
-Download the latest release: [Commander 1.0.0](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.0).
+Download the latest release: [Commander 1.0.1](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.1).
 
 - **Requirements:** macOS 15 or later, Apple Silicon
-- **Version:** 1.0.0
+- **Version:** 1.0.1
 
 The app is **ad-hoc signed** and **not notarized** by Apple. On first launch macOS may show the Gatekeeper warning:
 

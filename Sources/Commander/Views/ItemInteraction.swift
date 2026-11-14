@@ -98,7 +98,7 @@ struct ItemInteraction: View {
             for: item,
             tab: tab,
             app: app,
-            option: event.modifierFlags.contains(.option)
+            modifiers: event.modifierFlags
         )
     }
 

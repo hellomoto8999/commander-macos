@@ -2,51 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleName</key>
-    <string>Commander</string>
-    <key>CFBundleDisplayName</key>
-    <string>Commander</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.frank.commander</string>
-    <key>CFBundleExecutable</key>
-    <string>Commander</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>CFBundleInfoDictionaryVersion</key>
-    <string>6.0</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>15.0</string>
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.utilities</string>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-    <key>NSHumanReadableCopyright</key>
-    <string>Commander — file manager for macOS</string>
-    <key>NSDesktopFolderUsageDescription</key>
-    <string>Commander needs access to files on your Desktop.</string>
-    <key>NSDocumentsFolderUsageDescription</key>
-    <string>Commander needs access to your documents.</string>
-    <key>NSDownloadsFolderUsageDescription</key>
-    <string>Commander needs access to your downloads.</string>
-    <key>NSRemovableVolumesUsageDescription</key>
-    <string>Commander needs access to removable volumes.</string>
-    <key>NSLocalNetworkUsageDescription</key>
-    <string>Commander uses the local network to discover file servers.</string>
-    	<key>NSAppleEventsUsageDescription</key>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Commander</string>
+	<key>CFBundleExecutable</key>
+	<string>Commander</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.frank.commander</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Commander</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.1</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>15.0</string>
+	<key>NSAppleEventsUsageDescription</key>
 	<string>Commander usa Finder per aprire la finestra Informazioni standard e mostrare i dettagli dei file.</string>
-<key>NSBonjourServices</key>
-    <array>
-        <string>_smb._tcp</string>
-        <string>_afp._tcp</string>
-        <string>_nfs._tcp</string>
-    </array>
-    <key>CFBundleDevelopmentRegion</key>
-    <string>en</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_smb._tcp</string>
+		<string>_afp._tcp</string>
+		<string>_nfs._tcp</string>
+	</array>
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>Commander needs access to files on your Desktop.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Commander needs access to your documents.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Commander needs access to your downloads.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Commander — file manager for macOS</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Commander uses the local network to discover file servers.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>Commander needs access to removable volumes.</string>
 </dict>
 </plist>

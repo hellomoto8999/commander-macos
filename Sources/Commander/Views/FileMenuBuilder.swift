@@ -1,5 +1,6 @@
 import AppKit
 import UniformTypeIdentifiers
+import ObjectiveC
 
 /// Costruisce i menu contestuali AppKit per file e cartelle, con le voci
 /// che Finder mostra con il tasto destro e con Opzione + tasto destro.
@@ -21,10 +22,43 @@ enum FileMenuBuilder {
         for item: FileItem,
         tab: BrowserTab,
         app: AppState,
-        option: Bool = false
+        modifiers: NSEvent.ModifierFlags = []
     ) -> NSMenu {
         let menu = NSMenu()
+        populate(menu, for: item, tab: tab, app: app, modifiers: modifiers)
+
+        let controller = ModifierMenuController(
+            menu: menu,
+            item: item,
+            tab: tab,
+            app: app
+        )
+        menu.delegate = controller
+        objc_setAssociatedObject(
+            menu,
+            &modifierControllerKey,
+            controller,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+        )
+        return menu
+    }
+
+    private static var modifierControllerKey: UInt8 = 0
+
+    private static func populate(
+        _ menu: NSMenu,
+        for item: FileItem,
+        tab: BrowserTab,
+        app: AppState,
+        modifiers: NSEvent.ModifierFlags
+    ) {
+        menu.removeAllItems()
         menu.autoenablesItems = false
+        let option = modifiers.contains(.option)
+        let command = modifiers.contains(.command)
+        let control = modifiers.contains(.control)
+        let shift = modifiers.contains(.shift)
+        let alternate = option || command
 
         let targets: [URL] = tab.selection.contains(item.url)
             ? FileSystem.existingItems(at: Array(tab.selection))
@@ -52,7 +86,7 @@ enum FileMenuBuilder {
         }
 
         if single, item.isBrowsableFolder {
-            add(menu, L("Open in New Tab"), icon: "plus.rectangle.on.rectangle") {
+            add(menu, alternate ? L("Open in New Window") : L("Open in New Tab"), icon: "plus.rectangle.on.rectangle") {
                 DispatchQueue.main.async { app.newTab(at: item.url) }
             }
         }
@@ -65,10 +99,18 @@ enum FileMenuBuilder {
         }
 
         if !allFolders, single {
-            addOpenWithSubmenu(to: menu, item: item, targets: effectiveTargets, app: app, always: false)
+            addOpenWithSubmenu(to: menu, item: item, targets: effectiveTargets, app: app, always: alternate)
         }
 
-        add(menu, L("Get Info"), key: "i", icon: "info.circle") {
+        let infoTitle: String
+        if alternate {
+            infoTitle = L("Show Inspector")
+        } else if control {
+            infoTitle = L("Get Summary Info")
+        } else {
+            infoTitle = L("Get Info")
+        }
+        add(menu, infoTitle, key: "i", icon: "info.circle") {
             DispatchQueue.main.async { app.getInfo() }
         }
 
@@ -83,7 +125,7 @@ enum FileMenuBuilder {
             app.compress(effectiveTargets)
         }
 
-        add(menu, L("Duplicate"), key: "d", icon: "plus.square.on.square") {
+        add(menu, alternate && shift ? L("Duplicate Exactly") : L("Duplicate"), key: "d", icon: "plus.square.on.square") {
             app.duplicate(effectiveTargets)
         }
 
@@ -91,9 +133,13 @@ enum FileMenuBuilder {
             app.makeAlias(effectiveTargets)
         }
 
-        add(menu, L("Quick Look"), key: "y", icon: "eye") {
+        add(menu, alternate ? L("Slideshow") : L("Quick Look"), key: "y", icon: "eye") {
             DispatchQueue.main.async {
-                QuickLookController.shared.toggle(urls: effectiveTargets)
+                if alternate {
+                    QuickLookController.shared.slideshow(urls: effectiveTargets)
+                } else {
+                    QuickLookController.shared.toggle(urls: effectiveTargets)
+                }
             }
         }
 
@@ -103,12 +149,26 @@ enum FileMenuBuilder {
             FileClipboard.write(effectiveTargets, cut: true)
         }
 
-        add(menu, L("Copy"), key: "c", icon: "doc.on.doc") {
-            FileClipboard.write(effectiveTargets, cut: false)
+        if alternate {
+            add(menu, multiple
+                ? String(format: L("Copy %d Items as Pathnames"), effectiveTargets.count)
+                : String(format: L("Copy “%@” as Pathname"), item.name), key: "c", icon: "doc.on.doc") {
+                let paths = effectiveTargets.map(\.path).joined(separator: "\n")
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(paths, forType: .string)
+            }
+        } else {
+            add(menu, L("Copy"), key: "c", icon: "doc.on.doc") {
+                FileClipboard.write(effectiveTargets, cut: false)
+            }
         }
 
-        add(menu, L("Move to Trash"), key: "\u{8}", icon: "trash") {
-            app.trash(effectiveTargets)
+        add(menu, alternate ? L("Delete Immediately…") : L("Move to Trash"), key: "\u{8}", icon: "trash") {
+            if alternate {
+                app.deletePermanently()
+            } else {
+                app.trash(effectiveTargets)
+            }
         }
 
         addShareSubmenu(to: menu, targets: effectiveTargets, tab: tab, app: app)
@@ -149,29 +209,63 @@ enum FileMenuBuilder {
             }
         }
 
-        if option {
+        if alternate, single, item.isPackage {
             menu.addItem(.separator())
-
-            add(menu, multiple
-                ? String(format: L("Copy %d Items as Pathnames"), effectiveTargets.count)
-                : String(format: L("Copy “%@” as Pathname"), item.name)) {
-                let paths = effectiveTargets.map(\.path).joined(separator: "\n")
-                NSPasteboard.general.clearContents()
-                NSPasteboard.general.setString(paths, forType: .string)
-            }
-
-            if single, item.isPackage {
-                add(menu, L("Show Package Contents")) {
-                    DispatchQueue.main.async { app.newTab(at: item.url) }
-                }
-            }
-
-            if !allFolders, single {
-                addOpenWithSubmenu(to: menu, item: item, targets: effectiveTargets, app: app, always: true)
+            add(menu, L("Show Package Contents"), icon: "shippingbox") {
+                DispatchQueue.main.async { app.newTab(at: item.url) }
             }
         }
 
-        return menu
+    }
+
+    // MARK: - Live modifier variants
+
+    private final class ModifierMenuController: NSObject, NSMenuDelegate {
+        weak var menu: NSMenu?
+        let item: FileItem
+        let tab: BrowserTab
+        weak var app: AppState?
+        private var monitor: Any?
+        private var currentFlags: NSEvent.ModifierFlags = []
+
+        init(menu: NSMenu, item: FileItem, tab: BrowserTab, app: AppState) {
+            self.menu = menu
+            self.item = item
+            self.tab = tab
+            self.app = app
+        }
+
+        func menuWillOpen(_ menu: NSMenu) {
+            currentFlags = NSEvent.modifierFlags.intersection([.command, .option, .shift, .control])
+            monitor = NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { [weak self] event in
+                self?.flagsChanged(event)
+                return event
+            }
+        }
+
+        func menuDidClose(_ menu: NSMenu) {
+            if let monitor {
+                NSEvent.removeMonitor(monitor)
+            }
+            monitor = nil
+        }
+
+        private func flagsChanged(_ event: NSEvent) {
+            guard let app, let menu else { return }
+            let flags = event.modifierFlags.intersection([.command, .option, .shift, .control])
+            guard flags != currentFlags else { return }
+            currentFlags = flags
+
+            let fresh = NSMenu()
+            FileMenuBuilder.populate(fresh, for: item, tab: tab, app: app, modifiers: flags)
+            let newItems = Array(fresh.items)
+            fresh.removeAllItems()
+            menu.removeAllItems()
+            for newItem in newItems {
+                menu.addItem(newItem)
+            }
+            menu.update()
+        }
     }
 
     // MARK: - Helper menu

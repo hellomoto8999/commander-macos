@@ -27,6 +27,19 @@ final class QuickLookController: NSObject, QLPreviewPanelDataSource, QLPreviewPa
         panel.makeKeyAndOrderFront(nil)
     }
 
+    func slideshow(urls: [URL]) {
+        guard !urls.isEmpty, let panel = QLPreviewPanel.shared() else { return }
+        self.urls = urls
+        panel.dataSource = self
+        panel.delegate = self
+        panel.reloadData()
+        panel.currentPreviewItemIndex = 0
+        panel.makeKeyAndOrderFront(nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            panel.toggleFullScreen(nil)
+        }
+    }
+
     func close() {
         QLPreviewPanel.shared()?.orderOut(nil)
     }
