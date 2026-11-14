@@ -13,3 +13,4 @@ scripts/installa-servizio-finder.sh
 scripts/quick-action/
 scripts/sblocca-app.sh
 gatekeeper-fileunlock/
+ai-video-generator-v2/
