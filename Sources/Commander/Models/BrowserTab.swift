@@ -356,6 +356,8 @@ final class BrowserTab: ObservableObject, Identifiable {
             } else {
                 navigate(to: item.url)
             }
+        } else if item.ext == "zip", let app {
+            app.extractArchive(item.url)
         } else {
             NSWorkspace.shared.open(item.url)
         }

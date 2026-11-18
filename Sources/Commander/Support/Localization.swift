@@ -191,6 +191,9 @@ enum L10n {
         "Open With": "Apri con",
         "Open in New Tab": "Apri in nuova scheda",
         "Open in New Window": "Apri in nuova finestra",
+        "Extract": "Estrai",
+        "Extracting…": "Estrazione…",
+        "Could not extract the archive.": "Impossibile estrarre l'archivio.",
         "Get Summary Info": "Ottieni informazioni di riepilogo",
         "Slideshow": "Presentazione",
         "Duplicate Exactly": "Duplica esattamente",
@@ -333,7 +336,7 @@ enum L10n {
         "Panels": "Pannelli",
         "Sidebar": "Barra laterale",
         "Preview Pane": "Pannello anteprima",
-        "Version 1.0.1": "Versione 1.0.1",
+        "Version 1.0.2": "Versione 1.0.1",
         "A dual-pane file manager for macOS,\nwith Finder-style views, tabs and previews.":
             "Un file manager a doppio pannello per macOS,\ncon viste in stile Finder, schede e anteprime.",
         "Inspired by OneCommander": "Ispirato a OneCommander",

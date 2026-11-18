@@ -694,6 +694,82 @@ final class AppState: ObservableObject {
         NSPasteboard.general.setString(url.path, forType: .string)
     }
 
+    func extractArchive(_ archive: URL) {
+        guard archive.pathExtension.lowercased() == "zip" else {
+            NSWorkspace.shared.open(archive)
+            return
+        }
+
+        let fm = FileManager.default
+        let parent = archive.deletingLastPathComponent()
+        let base = archive.deletingPathExtension().lastPathComponent
+        let fallbackName = base.isEmpty ? L("Archive") : base
+        let temporary = parent.appendingPathComponent(".commander-extract-\(UUID().uuidString)")
+        var resultURL: URL?
+
+        run(L("Extracting…"), {
+            try fm.createDirectory(at: temporary, withIntermediateDirectories: false)
+            defer { try? fm.removeItem(at: temporary) }
+
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: "/usr/bin/ditto")
+            process.arguments = ["-x", "-k", archive.path, temporary.path]
+
+            let stderr = Pipe()
+            process.standardError = stderr
+            try process.run()
+            let data = stderr.fileHandleForReading.readDataToEndOfFile()
+            process.waitUntilExit()
+
+            guard process.terminationStatus == 0 else {
+                let detail = String(data: data, encoding: .utf8)?
+                    .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                throw NSError(
+                    domain: "Commander",
+                    code: Int(process.terminationStatus),
+                    userInfo: [NSLocalizedDescriptionKey: detail.isEmpty
+                        ? L("Could not extract the archive.")
+                        : detail]
+                )
+            }
+
+            let contents = try fm.contentsOfDirectory(
+                at: temporary,
+                includingPropertiesForKeys: [.isDirectoryKey],
+                options: [.skipsHiddenFiles]
+            )
+            let visible = contents.filter {
+                $0.lastPathComponent != "__MACOSX" && $0.lastPathComponent != ".DS_Store"
+            }
+
+            if visible.count == 1,
+               let only = visible.first,
+               (try? only.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {
+                let destination = FileSystem.uniqueDestination(for: only, in: parent)
+                try fm.moveItem(at: only, to: destination)
+                resultURL = destination
+            } else {
+                let destination = FileSystem.uniqueDestination(
+                    for: parent.appendingPathComponent(fallbackName),
+                    in: parent
+                )
+                try fm.createDirectory(at: destination, withIntermediateDirectories: false)
+                for item in visible {
+                    try fm.moveItem(
+                        at: item,
+                        to: destination.appendingPathComponent(item.lastPathComponent)
+                    )
+                }
+                resultURL = destination
+            }
+        }, onSuccess: {
+            self.refreshAllTabs()
+            if let resultURL {
+                self.activeTab?.selection = [resultURL]
+            }
+        })
+    }
+
     func openTerminal(at url: URL) {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/open")

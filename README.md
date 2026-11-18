@@ -30,7 +30,7 @@ A native, dual-pane file manager for macOS with a Finder-style interface: system
 - **Eject** removable devices from the sidebar, context menu, or with `⌘E`.
 - **Preview** of images, PDFs, text, folders, video/audio; Quick Look with the space bar.
 - **Sharing** through the system sharing panel.
-- **File operations**: copy, cut, paste (including to/from Finder), move here, duplicate, rename, new folder/file, compress to ZIP, make alias, move to Trash, empty Trash, permanently delete.
+- **File operations**: copy, cut, paste (including to/from Finder), move here, duplicate, rename, new folder/file, compress to ZIP, extract ZIP archives inside Commander, make alias, move to Trash, empty Trash, permanently delete.
 - **Finder tags** read and write (seven system colors), with a Tags sidebar and tag search.
 - **Trash**: if macOS has not granted access, Commander shows Full Disk Access guidance instead of a raw error.
 - **Progress panel** for copy and move: current file, bytes transferred, completed items, and Cancel. Same-volume moves are instant.
@@ -53,10 +53,10 @@ A native, dual-pane file manager for macOS with a Finder-style interface: system
 
 ## Installation
 
-Download the latest release: [Commander 1.0.1](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.1).
+Download the latest release: [Commander 1.0.2](https://github.com/hellomoto8999/commander-macos/releases/tag/v1.0.2).
 
 - **Requirements:** macOS 15 or later, Apple Silicon
-- **Version:** 1.0.1
+- **Version:** 1.0.2
 
 The app is **ad-hoc signed** and **not notarized** by Apple. On first launch macOS may show the Gatekeeper warning:
 

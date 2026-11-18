@@ -85,6 +85,12 @@ enum FileMenuBuilder {
             }
         }
 
+        if single, item.isArchive {
+            add(menu, L("Extract"), icon: "archivebox") {
+                app.extractArchive(item.url)
+            }
+        }
+
         if single, item.isBrowsableFolder {
             add(menu, alternate ? L("Open in New Window") : L("Open in New Tab"), icon: "plus.rectangle.on.rectangle") {
                 DispatchQueue.main.async { app.newTab(at: item.url) }

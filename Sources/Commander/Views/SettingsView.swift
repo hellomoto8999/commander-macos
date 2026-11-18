@@ -321,7 +321,7 @@ struct SettingsView: View {
                 .frame(width: 64, height: 64)
             Text("Commander")
                 .font(.system(size: 20, weight: .semibold))
-            Text(L("Version 1.0.1"))
+            Text(L("Version 1.0.2"))
                 .font(.system(size: 11.5))
                 .foregroundStyle(Palette.textSecondary)
             Text(L("A dual-pane file manager for macOS,\nwith Finder-style views, tabs and previews."))

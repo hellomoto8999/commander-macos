@@ -222,7 +222,7 @@ struct PreviewPane: View {
                 if FileItem(url: url).isBrowsableFolder {
                     tab.navigate(to: url)
                 } else {
-                    NSWorkspace.shared.open(url)
+                    tab.open(FileItem(url: url))
                 }
             } label: {
                 Text(L("Open"))
