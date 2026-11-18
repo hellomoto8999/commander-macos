@@ -30,6 +30,7 @@ struct FileItem: Identifiable, Hashable, Sendable {
         return "\(ext.uppercased()) \(L("file"))"
     }
 
+    var isArchive: Bool { ext == "zip" }
     var isImage: Bool { type?.conforms(to: .image) ?? false }
     var isMovie: Bool { type?.conforms(to: .movie) ?? false }
     var isAudio: Bool { type?.conforms(to: .audio) ?? false }
