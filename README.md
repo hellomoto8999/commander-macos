@@ -69,6 +69,20 @@ The app is **ad-hoc signed** and **not notarized** by Apple. On first launch mac
 
 Removing the warning permanently requires an Apple **Developer ID** signature and notarization.
 
+## macOS Permissions
+
+macOS TCC asks for several different permissions, not one global permission:
+
+- **Files & Folders** for Desktop, Documents, and Downloads.
+- **Full Disk Access** to read or empty the Trash.
+- **Automation** to control Finder (Get Info, network mounts) and Terminal (new terminal tab).
+- **Local Network** for Bonjour server discovery.
+- **Removable Volumes** for external disks.
+
+These permissions are tied to the signed app. Commander uses an **ad-hoc signature**, so each rebuild changes its identity: macOS may ask again after installing a new build. Run the app from `/Applications` (not from Downloads or a random build folder, where App Translocation can also reset permissions) and grant access once.
+
+For a permanent, update-stable identity, the app must be signed with a **Developer ID** certificate and notarized. Gatekeeper warnings and TCC prompts are separate mechanisms: notarization removes the Gatekeeper warning, while TCC controls folder/automation/network access.
+
 ## Build
 
 ```bash
